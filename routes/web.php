@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,6 @@ Route::middleware(['Admin','auth:sanctum', 'verified'])->prefix('admin')->group(
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('students', [StudentController::class, 'index']);
+Route::get('students/list', [StudentController::class, 'getStudents'])->name('students.list');
